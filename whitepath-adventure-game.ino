@@ -44,6 +44,7 @@ unsigned int count = 0;
 unsigned long startTime = 0;
 unsigned long elapsedTime = 0;
 bool isStopped = false;
+unsigned long timeByFault = 3000; // Tiempo adicional por desborde (3 segundos)
 
 // Declaración de funciones
 bool isOnBlackLine();
@@ -116,7 +117,7 @@ void loop() {
     unsigned long minutes = seconds / 60;
 
     // Al tiempo base se suma la cantidad de errors multiplicado por 1 minuto (60000 milisegundos)
-    unsigned long extendedTime = elapsedTime + (count * 60000);
+    unsigned long extendedTime = elapsedTime + (count * timeByFault);
     unsigned long extendedSeconds = extendedTime / 1000;
     unsigned long extendedMinutes = extendedSeconds / 60;
 
